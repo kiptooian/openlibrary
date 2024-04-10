@@ -3,9 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Open Library - Book Listing</title>
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.js" integrity="sha512-pmaEGtUAy7E5gRmwjLqQAD/QWw0dL4Z59b6b+2HQkqQwQ+HcPLLb9/KbUNo5zr10WuXmbivK9nYVZOyDkMgZMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<style>
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 5px;
+        border: 1px solid #c6c6c6;
+    }
+
+    input, select {
+        padding: 10px;
+        border: 1px solid #c5c5c5;
+        border-radius: 10px;
+    }
+</style>
 <body>
+    <h2>Open Library Book Listing</h2>
+
+    <div style="display: inline-block;padding:10px">
+        Sort By: 
+        <select>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="popularity">Popularity</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;
+        Filter By:
+        <select>
+            <option value="title">Title</option>
+            <option value="author">Author</option>
+            <option value="popularity">Popularity</option>
+        </select>
+        &nbsp;&nbsp;&nbsp;
+        <input style="width: 299px;" id="search-input" placeholder="search...">
+    </div>
     
+    <table style="width: 800px">
+        <thead>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Edition</th>
+            <th>Stars</th>
+        </thead>
+        <tr>
+            <td>Trudy Takes Charge</td>
+            <td>Mary A Faid</td>
+            <td>Vol 1</td>
+            <td>3</td>
+        </tr>
+    </table>
+    <div style="display: flex;justify-content: space-between;padding:10px;width:750px">
+        <a href="#"><< Previous Page</a>
+        <a href="#">Next Page >></a>
+    </div>
 </body>
 </html>
