@@ -28,17 +28,19 @@
 
     <div style="display: inline-block;padding:10px">
         Sort By: 
-        <select>
+        <select id="sort">
+            <option value=""></option>
             <option value="title">Title</option>
             <option value="author">Author</option>
-            <option value="popularity">Popularity</option>
+            <option value="rating">Rating</option>
         </select>
         &nbsp;&nbsp;&nbsp;
-        Filter By:
-        <select>
-            <option value="title">Title</option>
-            <option value="author">Author</option>
-            <option value="popularity">Popularity</option>
+        Limit
+        <select id="limit">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
         </select>
         &nbsp;&nbsp;&nbsp;
         <input style="width: 299px;" id="search-input" placeholder="Type & press enter to search...">
