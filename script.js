@@ -1,5 +1,7 @@
-function loadBooks() {
-    let url = "https://openlibrary.org/search.json?q=the+lord+of+the+rings"
+function loadBooks(data) {
+    let url = "https://openlibrary.org/search.json?"
+
+    if(data.query) url += `q=${data.query}`
 
     url += "&limit=10&fields=key,title,author_name,editions,editions.key,editions.title,ratings_average"
 
@@ -41,12 +43,26 @@ function showError() {
     tableBody.appendChild(document.createElement('tr').appendChild(loadingText))
 }
 
+function renderEmpty() {
+    let tableBody = document.getElementById('table-body')
+    //clear exisiting books
+    tableBody.innerHTML = ''
+
+    let loadingText = document.createElement('td')
+    loadingText.colSpan = 3
+    loadingText.innerText = 'No books found matching your selection...'
+
+    tableBody.appendChild(document.createElement('tr').appendChild(loadingText))
+}
+
 function renderBooks(books) {
     let tableBody = document.getElementById('table-body')
     //clear exisiting books
     tableBody.innerHTML = ''
 
-    if(!books || books.length == 0) return
+    if(!books || books.length == 0) {
+        renderEmpty()
+    }
 
     books.map(book => {
         let row = document.createElement('tr')
@@ -72,5 +88,16 @@ function renderBooks(books) {
 
 document.addEventListener("DOMContentLoaded", function(event) {
     //load initial books with initial query
-    loadBooks({})
+    loadBooks({query: "Science fiction"})
+
+    //search event listener
+    var searchInput = document.getElementById("search-input");
+
+    searchInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        
+        loadBooks({query: searchInput.value})
+    }
+    });
 });
