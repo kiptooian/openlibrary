@@ -1,5 +1,6 @@
 var loadedBooks = []
 var limit = 10
+var page = 1
 
 function loadBooks(data) {
     let url = "https://openlibrary.org/search.json?"
@@ -8,6 +9,10 @@ function loadBooks(data) {
         url += `q=${data.query}`
     } else {
         url += `q=Classics`
+    }
+
+    if(page) {
+        url += `&page=${page}`
     }
 
     if(limit) url += `&limit=${limit}`
@@ -162,4 +167,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         loadBooks({query: searchInput.value})
     });
 
+    //paginate
+    var prevPage = document.getElementById("prev-page");
+
+    prevPage.addEventListener("click", function(event) {
+        if(page > 1) {
+            page -= 1
+
+            loadBooks({query: searchInput.value})
+        }
+    });
+
+    var nextPage = document.getElementById("next-page");
+
+    nextPage.addEventListener("click", function(event) {
+        page += 1
+
+        loadBooks({query: searchInput.value})
+    });
 });
